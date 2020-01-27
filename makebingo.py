@@ -19,7 +19,8 @@ BOXSIZE = ((WIDTH - (2 * XMARGIN)) / 5) - BOXMARGIN
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('data_file', type=str)
+    parser.add_argument('data_file', type=str, help='text file with 1 category per line')
+    parser.add_argument('output_file', type=str, help='filename of pdf output')
     args = parser.parse_args()
 
     try:
@@ -30,7 +31,11 @@ def main():
 
     random.shuffle(categories)
 
-    pdf = cairo.PDFSurface('test.pdf', WIDTH, HEIGHT)
+    if args.output_file.endswith('.pdf'):
+        pdf = cairo.PDFSurface(args.output_file, WIDTH, HEIGHT)
+    else:
+        pdf = cairo.PDFSurface(args.output_file + '.pdf', WIDTH, HEIGHT)
+
     context = cairo.Context(pdf)
 
     context.rectangle(0, 0, WIDTH, HEIGHT)
