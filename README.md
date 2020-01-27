@@ -14,4 +14,3 @@ TODO:
 2. Color scheme
 3. Specify output filename on CLI
 4. Vertical spacing seems inconsistent
-5. Add shebang, mark executable
